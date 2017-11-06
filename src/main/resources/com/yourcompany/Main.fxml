@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import com.jfoenix.controls.*?>
+<?import org.controlsfx.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane minHeight="600.0" minWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.yourcompany.MainController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourcompany.MainController">
    <children>
-      <Label fx:id="label" text="Label" />
+      <VBox alignment="CENTER" fillWidth="false" layoutX="327.0" layoutY="266.0" prefHeight="350.0" prefWidth="474.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXTextField fx:id="searchTF" focusColor="#58d68d" layoutX="327.0" layoutY="266.0" promptText="Search Keyword" />
+            <JFXComboBox fx:id="searchCB" focusColor="#58d68d" layoutX="333.0" layoutY="300.0" promptText="Select Method" />
+            <JFXButton fx:id="searchBT" buttonType="RAISED" layoutX="356.0" layoutY="337.0" onAction="#onSearch" prefHeight="32.0" prefWidth="90.0" style="-fx-background-color: #58D68D;" text="Search" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

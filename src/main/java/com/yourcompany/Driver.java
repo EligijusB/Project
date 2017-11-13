@@ -26,14 +26,14 @@ public class Driver {
 	        DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setJavascriptEnabled(true);
 			//caps.setCapability(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,"windows_phantomjs.exe");
-			//PhantomJsDriverManager.getInstance().setup();
-			ChromeDriverManager.getInstance().setup();
+			PhantomJsDriverManager.getInstance().setup();
+			//ChromeDriverManager.getInstance().setup();
 			System.out.println("Setting chrome path");
 			//System.setProperty("webdriver.chrome.driver", "/Users/eligijusblankus/eclipse-workspace/Project/chromedriver.exe");
 			//driver = new ChromeDriver();
 			System.out.println("opening chrome driver");
-			//driver = new PhantomJSDriver(caps);
-			driver = new ChromeDriver();
+			driver = new PhantomJSDriver();
+			//driver = new ChromeDriver();
 			//driver = new HtmlUnitDriver(caps);
 			driver.navigate().to(mainPage);     
 			driverSet = true;

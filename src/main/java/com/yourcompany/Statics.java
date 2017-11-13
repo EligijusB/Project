@@ -14,7 +14,7 @@ import org.openqa.selenium.WebElement;
  */
 public class Statics {
 
-    public static String search(WebDriver driver, String appName){
+    public static String search(WebDriver driver, String appName) throws InterruptedException{
         //search the application provided with the driver
         //1:input the name of the app provided into the search input field
         //search input css selector #gbqfq

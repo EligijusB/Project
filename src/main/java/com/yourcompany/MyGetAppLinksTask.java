@@ -13,7 +13,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.concurrent.Task;
 
-public class MyGetAppLinksTask extends Task {
+public class MyGetAppLinksTask extends Task<ArrayList<String>> {
 
 	ArrayList<String> links;
 	WebDriver driver;
@@ -36,13 +36,14 @@ public class MyGetAppLinksTask extends Task {
 	}
 
 	@Override
-	protected Object call() throws Exception {
+	protected ArrayList<String> call() throws Exception {
 		if (isCancelled()) {
 			//pass
 			return null;
 		} else {
 			// gather links
 			String pageSource = Statics.search(driver, searchKey);
+			System.out.println("Called statics method...");
 			try {
 				final Document document = Jsoup.parse(pageSource);
 				Elements allAppDivs = document.select("div.card-content.id-track-click.id-track-impression");
@@ -62,8 +63,6 @@ public class MyGetAppLinksTask extends Task {
 				return this.links;
 			}catch(Exception e) {
 				return null;
-			}finally {
-				this.cancel();
 			}
 		}
 	}

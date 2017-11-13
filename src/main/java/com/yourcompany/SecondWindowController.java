@@ -84,26 +84,27 @@ public class SecondWindowController implements Initializable {
 		thread.setDaemon(true);
 		thread.start();
 		
+		getLinksTask.setOnSucceeded(el ->{
+			notifierLabel.setText("Links gathering task completed...");
+			System.out.println("Mylinkstask completed successfully... ");
+			try {
+				AppLinks.setLinksList((ArrayList<String>)getLinksTask.get());
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (ExecutionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
 		//set driver listener property change listener
 		driverSetListener.addListener(e ->{
 			System.out.println("Driver Set from property");
-			getLinksTask.setOnSucceeded(el ->{
-				notifierLabel.setText("Links gathering task completed...");
-				System.out.println("Mylinkstask completed successfully... ");
-				try {
-					AppLinks.setLinksList((ArrayList<String>)getLinksTask.get());
-				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				} catch (ExecutionException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			});
+		
 			getLinksTask.setDriver(Driver.getDriver());
 			getLinksTask.setSearchKey(MainController.getSearchKey());
 			Thread tr = new Thread(getLinksTask);
-			tr.setDaemon(true);
 			tr.start();
 			notifierLabel.setText("Gathering links...");
 		});

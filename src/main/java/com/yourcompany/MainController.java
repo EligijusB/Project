@@ -18,6 +18,10 @@ import javafx.stage.Stage;
 
 public class MainController implements Initializable {
 
+	private static Stage secondwindowstage;
+	private static String searchKey;
+	private static String searchMethod;
+	
 	@FXML
 	private JFXComboBox<String> searchCB;
 	
@@ -29,6 +33,7 @@ public class MainController implements Initializable {
 	
 	@FXML
 	private JFXTreeTableView tableView;
+	
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -48,13 +53,31 @@ public class MainController implements Initializable {
 	}
 	
 	public void onSearch() throws IOException {
+		searchKey = searchTF.getText();
+		searchMethod  = searchCB.getSelectionModel().getSelectedItem();
 		Stage stage = new Stage();
+		secondwindowstage = stage;
 		Parent root = FXMLLoader.load(getClass().getResource("SecondWindow.fxml"));
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
 		stage.show();
 		
+	}
+
+	public static Stage getMyStage() {
+		// TODO Auto-generated method stub
+		return secondwindowstage;
+	}
+	
+	public static String getSearchKey() {
+		// TODO Auto-generated method stub
+		return searchKey;
+	}
+	
+	public static String getSearchMethod() {
+		// TODO Auto-generated method stub
+		return searchMethod;
 	}
 
 }

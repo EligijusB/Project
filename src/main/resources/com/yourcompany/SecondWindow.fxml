@@ -9,7 +9,7 @@
    <children>
       <VBox prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label alignment="TOP_LEFT" />
+            <Label fx:id="notifierLabel" alignment="TOP_LEFT" />
             <JFXTreeTableView fx:id="tableView">
                <columnResizePolicy>
                   <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

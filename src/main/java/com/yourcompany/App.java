@@ -10,7 +10,7 @@ public class App extends RecursiveTreeObject<App> {
     private StringProperty title;
     private StringProperty subtitle;
     private String[] genre;
-    private String price;
+    private StringProperty price;
     private boolean free;
     private int reviews;
     private String description;
@@ -23,7 +23,7 @@ public class App extends RecursiveTreeObject<App> {
     private String[] whatsnew;
     private String size;
     private String lastUpdate;
-    private String installs;
+    private StringProperty installs;
     private double currentVersion;
     private String androidReq;
     private String contentRating;
@@ -78,12 +78,12 @@ public class App extends RecursiveTreeObject<App> {
         this.subtitle = new SimpleStringProperty(subtitle);
     }
 
-    public String getPrice() {
+    public StringProperty getPrice() {
         return price;
     }
 
     public void setPrice(String price) {
-        this.price = price;
+        this.price = new SimpleStringProperty(price);
     }
 
     public boolean isFree() {
@@ -174,12 +174,12 @@ public class App extends RecursiveTreeObject<App> {
         this.lastUpdate = lastUpdate;
     }
 
-    public String getInstalls() {
+    public StringProperty getInstalls() {
         return installs;
     }
 
     public void setInstalls(String installs) {
-        this.installs = installs;
+        this.installs = new SimpleStringProperty(installs);
     }
 
     public double getCurrentVersion() {

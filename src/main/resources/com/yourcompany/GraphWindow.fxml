@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox fx:id="vbox" prefHeight="400.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox>
+               <children>
+                  <JFXButton buttonType="RAISED" onAction="#saveAsPNG" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Export">
+                     <HBox.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="27.0" prefWidth="739.0">
+                     <children>
+                        <Label fx:id="bigRlabel" text="Big R = " />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <StackPane fx:id="stackpane">
+               <children>
+                  <ScatterChart fx:id="scatterChart" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <xAxis>
+                        <NumberAxis />
+                     </xAxis>
+            			  <yAxis>
+                        <NumberAxis />
+                     </yAxis>
+                  </ScatterChart>
+               </children>
+            </StackPane>
+            <HBox alignment="CENTER" spacing="30.0">
+               <children>
+                  <JFXButton buttonType="RAISED" onAction="#showMainGraph" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Show Main Chart" />
+                  <JFXButton buttonType="RAISED" onAction="#showLogAxisY" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Show Log Y Chart" />
+                  <JFXButton buttonType="RAISED" onAction="#showLogAxisX" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Show Log X Chart" />
+                  <JFXButton buttonType="RAISED" onAction="#showLogAxis" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Show Log Chart" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,48 +1,106 @@
 package com.yourcompany;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 public class App extends RecursiveTreeObject<App> {
     private String url;
-    private StringProperty title;
-    private StringProperty subtitle;
-    private String[] genre;
-    private StringProperty price;
-    private boolean free;
-    private int reviews;
+    private String title;
+    private String subtitle;
+    private ArrayList<String> genre;
+    private String price;
+    private boolean free;;
+    private String reviews;
     private String description;
-    private double score;
-    private int score5;
-    private int score4;
-    private int score3;
-    private int score2;
-    private int score1;
-    private String[] whatsnew;
+    private String score;
+    private String score5;
+    private String score4;
+    private String score3;
+    private String score2;
+    private String score1;
+    private String whatsnew;
     private String size;
     private String lastUpdate;
-    private StringProperty installs;
-    private double currentVersion;
+    private String installs;
+    private String currentVersion;
     private String androidReq;
-    private String contentRating;
+    private ArrayList<String> contentRating;
     private String interactiveElements;
     private String inAppPurchases;
-    private String[] permissions;
     private String developer;
     private String developerWebsite;
     private String developerEmail;
     private String developerAddress;
-
-    public App() {
+    private BooleanProperty isSelected = new SimpleBooleanProperty();
+    
+    public BooleanProperty getIsSelected() {
+    		return isSelected;
+    }
+    
+    public void setIsSelected(boolean val) {
+    		this.isSelected.set(val);
     }
 
-    public String[] getGenre() {
+    @Override
+	public String toString() {
+		return "App [url=" + url + ", title=" + title + ", subtitle=" + subtitle + ", genre=" + genre + ", price="
+				+ price + ", free=" + free + ", reviews=" + reviews + ", description=" + description + ", score="
+				+ score + ", score5=" + score5 + ", score4=" + score4 + ", score3=" + score3 + ", score2=" + score2
+				+ ", score1=" + score1 + ", whatsnew=" + whatsnew + ", size=" + size + ", lastUpdate=" + lastUpdate
+				+ ", installs=" + installs + ", currentVersion=" + currentVersion + ", androidReq=" + androidReq
+				+ ", contentRating=" + contentRating + ", interactiveElements=" + interactiveElements
+				+ ", inAppPurchases=" + inAppPurchases + ", permissions="
+				+ ", developer=" + developer + ", developerWebsite=" + developerWebsite + ", developerEmail="
+				+ developerEmail + ", developerAddress=" + developerAddress + "]";
+	}
+
+	public App() {
+		isSelected.set(false);
+		isSelected.addListener(new ChangeListener<Boolean>() {
+			public void changed(ObservableValue<? extends Boolean> ov, Boolean old_val,
+					Boolean new_val) {
+
+				if(new_val) {
+					if(!ContainsApp()) {
+						addToSelectedList();
+					}
+				}else {
+					//app.setIsSelected(false);
+					System.out.println("In new value is false");
+					removeFromSelectedList();
+				}
+			}
+		});
+    }
+	
+	private boolean ContainsApp() {
+		return SecondWindowController.selectedAppsList.contains(this);
+	}
+	
+	private void addToSelectedList() {
+		SecondWindowController.selectedAppsList.add(this);
+	}
+	
+	private void removeFromSelectedList() {
+		SecondWindowController.selectedAppsList.remove(this);
+	}
+	
+	
+
+    public ArrayList<String> getGenre() {
         return genre;
     }
 
-    public void setGenre(String[] genre) {
+    public void setGenre(ArrayList<String> genre) {
         this.genre = genre;
     }
 
@@ -62,28 +120,28 @@ public class App extends RecursiveTreeObject<App> {
         this.url = url;
     }
 
-    public StringProperty getTitle() {
+    public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
-        this.title = new SimpleStringProperty(title);
+        this.title = title;
     }
 
-    public StringProperty getSubtitle() {
+    public String getSubtitle() {
         return subtitle;
     }
 
     public void setSubtitle(String subtitle) {
-        this.subtitle = new SimpleStringProperty(subtitle);
+        this.subtitle = subtitle;
     }
 
-    public StringProperty getPrice() {
+    public String getPrice() {
         return price;
     }
 
     public void setPrice(String price) {
-        this.price = new SimpleStringProperty(price);
+        this.price = price;
     }
 
     public boolean isFree() {
@@ -94,11 +152,11 @@ public class App extends RecursiveTreeObject<App> {
         this.free = free;
     }
 
-    public int getReviews() {
+    public String getReviews() {
         return reviews;
     }
 
-    public void setReviews(int reviews) {
+    public void setReviews(String reviews) {
         this.reviews = reviews;
     }
 
@@ -110,59 +168,59 @@ public class App extends RecursiveTreeObject<App> {
         this.description = description;
     }
 
-    public double getScore() {
+    public String getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
-    public int getScore5() {
+    public String getScore5() {
         return score5;
     }
 
-    public void setScore5(int score5) {
+    public void setScore5(String score5) {
         this.score5 = score5;
     }
 
-    public int getScore4() {
+    public String getScore4() {
         return score4;
     }
 
-    public void setScore4(int score4) {
+    public void setScore4(String score4) {
         this.score4 = score4;
     }
 
-    public int getScore3() {
+    public String getScore3() {
         return score3;
     }
 
-    public void setScore3(int score3) {
+    public void setScore3(String score3) {
         this.score3 = score3;
     }
 
-    public int getScore2() {
+    public String getScore2() {
         return score2;
     }
 
-    public void setScore2(int score2) {
+    public void setScore2(String score2) {
         this.score2 = score2;
     }
 
-    public int getScore1() {
+    public String getScore1() {
         return score1;
     }
 
-    public void setScore1(int score1) {
+    public void setScore1(String score1) {
         this.score1 = score1;
     }
 
-    public String[] getWhatsnew() {
+    public String getWhatsnew() {
         return whatsnew;
     }
 
-    public void setWhatsnew(String[] whatsnew) {
+    public void setWhatsnew(String whatsnew) {
         this.whatsnew = whatsnew;
     }
 
@@ -174,19 +232,19 @@ public class App extends RecursiveTreeObject<App> {
         this.lastUpdate = lastUpdate;
     }
 
-    public StringProperty getInstalls() {
+    public String getInstalls() {
         return installs;
     }
 
     public void setInstalls(String installs) {
-        this.installs = new SimpleStringProperty(installs);
+        this.installs = installs;
     }
 
-    public double getCurrentVersion() {
+    public String getCurrentVersion() {
         return currentVersion;
     }
 
-    public void setCurrentVersion(double currentVersion) {
+    public void setCurrentVersion(String currentVersion) {
         this.currentVersion = currentVersion;
     }
 
@@ -198,11 +256,11 @@ public class App extends RecursiveTreeObject<App> {
         this.androidReq = androidReq;
     }
 
-    public String getContentRating() {
+    public ArrayList<String> getContentRating() {
         return contentRating;
     }
 
-    public void setContentRating(String contentRating) {
+    public void setContentRating(ArrayList<String> contentRating) {
         this.contentRating = contentRating;
     }
 
@@ -220,14 +278,6 @@ public class App extends RecursiveTreeObject<App> {
 
     public void setInAppPurchases(String inAppPurchases) {
         this.inAppPurchases = inAppPurchases;
-    }
-
-    public String[] getPermissions() {
-        return permissions;
-    }
-
-    public void setPermissions(String[] permissions) {
-        this.permissions = permissions;
     }
 
     public String getDeveloper() {

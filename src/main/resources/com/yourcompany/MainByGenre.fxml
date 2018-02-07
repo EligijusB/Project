@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourcompany.MainGenreController">
+   <children>
+      <ScrollPane layoutY="76.0" prefHeight="297.0" prefViewportHeight="304.0" prefViewportWidth="600.0" prefWidth="602.0">
+         <content>
+            <VBox fx:id="vbox" layoutX="186.0" layoutY="76.0" prefHeight="290.0" prefWidth="600.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="76.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Label fx:id="notifierLabel" layoutX="6.0" layoutY="378.0" />
+      <VBox fx:id="genresVbox" alignment="CENTER" prefHeight="76.0" prefWidth="300.0" spacing="5.0">
+         <children>
+            <Label text="Select Genre:" />
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <JFXComboBox fx:id="comboGames" focusColor="#58d68d" prefHeight="27.0" prefWidth="105.0" promptText="Games" unFocusColor="#58d68d" />
+                  <JFXComboBox fx:id="comboOther" focusColor="#58d68d" prefHeight="27.0" prefWidth="105.0" promptText="Other" unFocusColor="#58d68d" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </VBox>
+      <VBox fx:id="categoriesVbox" alignment="CENTER" layoutX="300.0" prefHeight="76.0" prefWidth="300.0" spacing="5.0">
+         <children>
+            <Label text="Select Category:" />
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+               <children>
+                  <JFXButton fx:id="homeBT" buttonType="RAISED" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Home" />
+                  <JFXButton fx:id="topBT" buttonType="RAISED" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Top Charts" />
+                  <JFXButton fx:id="newBT" buttonType="RAISED" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="New Releases" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" fillWidth="false" prefHeight="350.0" prefWidth="474.0" spacing="20.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourcompany.ChooseMainController">
+   <children>
+      <JFXButton buttonType="RAISED" layoutX="228.0" layoutY="126.0" onAction="#onClickByKeyword" ripplerFill="#58d68d" style="-fx-background-color: #5add90;" text="Search by keyword" />
+      <JFXButton buttonType="RAISED" layoutX="228.0" layoutY="187.0" onAction="#onClickByGenre" ripplerFill="#5add90" style="-fx-background-color: #5add90;" text="Search by genre" />
+      <JFXButton buttonType="RAISED" onAction="#onClickByLink" ripplerFill="#58d68d" style="-fx-background-color: #5add90;" text="Search by link" />
+   </children>
+</VBox>

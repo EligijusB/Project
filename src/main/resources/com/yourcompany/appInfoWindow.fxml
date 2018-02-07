@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <VBox prefWidth="193.0" spacing="5.0">
+               <children>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="35.0" text="Title: ">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="title" wrapText="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="45.0" text="Genre: " />
+                        <Label fx:id="genre" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="39.0" text="Price: " />
+                        <Label fx:id="price" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="58.0" text="Reviews: " />
+                        <Label fx:id="reviews" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="51.0" text="Installs: " />
+                        <Label fx:id="installs" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="34.0" text="Size: " />
+                        <Label fx:id="size" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="61.0" text="Updated: " />
+                        <Label fx:id="updated" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="88.0" text="Android Req.: " />
+                        <Label fx:id="androidreq" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="79.0" text="Con. Rating: " />
+                        <Label fx:id="rating" wrapText="true" />
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox prefWidth="193.0" spacing="5.0">
+               <children>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="44.0" text="Score: " />
+                        <Label fx:id="score" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="55.0" text="Score 5: " />
+                        <Label fx:id="score5" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="55.0" text="Score 4: " />
+                        <Label fx:id="score4" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="55.0" text="Score 3: " />
+                        <Label fx:id="score3" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="55.0" text="Score 2: " />
+                        <Label fx:id="score2" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="55.0" text="Score 1: " />
+                        <Label fx:id="score1" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="54.0" text="Version: " />
+                        <Label fx:id="version" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="77.0" text="Inter. Elem.: " />
+                        <Label fx:id="interactive" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="78.0" text="In-App Pur.: " />
+                        <Label fx:id="inapp" wrapText="true" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0" />
+            <VBox prefWidth="193.0">
+               <children>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="71.0" text="Developer: " />
+                        <Label fx:id="developer" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="58.0" text="Website: " />
+                        <Label fx:id="website" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="41.0" text="Email: " />
+                        <Label fx:id="email" wrapText="true" />
+                     </children>
+                  </HBox>
+                  <HBox maxWidth="193.0">
+                     <children>
+                        <Label minWidth="59.0" text="Address: " />
+                        <Label fx:id="address" wrapText="true" />
+                     </children>
+                  </HBox>
+               </children>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox spacing="10.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefWidth="295.0">
+               <children>
+                  <Label text="Whats New" />
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane maxHeight="1.7976931348623157E308">
+                           <children>
+                              <Label fx:id="whatsnew" maxWidth="277.0" wrapText="true" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefWidth="295.0">
+               <children>
+                  <Label text="Description" />
+                  <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                    <content>
+                      <AnchorPane maxHeight="1.7976931348623157E308">
+                           <children>
+                              <Label fx:id="description" maxWidth="277.0" wrapText="true" />
+                           </children>
+                           <padding>
+                              <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                           </padding>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</VBox>

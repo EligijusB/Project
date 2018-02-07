@@ -14,6 +14,11 @@ public class MyGetDriverTask extends Task {
 				System.out.println("setting up driver");
 				Driver.setupDriver();
 				System.out.println("Driver Set properly");
+				try {
+					MainGenreController.setDriverTrue();
+				}catch(Exception e){
+					//pass
+				}
 				return true;
 			}catch(Exception e) {
 				return false;

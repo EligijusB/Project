@@ -88,46 +88,83 @@ class JsoupClass {
         return list;
     }
     
-    public static ArrayList<Pair> getSingleAppInfo(String link) throws IOException {
-        ArrayList<Pair> resultList = new ArrayList();
+    public static App getSingleAppInfo(String link) throws IOException {
+        //ArrayList<Pair> resultList = new ArrayList();
+    		link = "https://play.google.com" + link;
         Document document = Jsoup.connect(link).get();
-        
+        App app = new App();
         Elements elements = document.select("div.details-wrapper.apps.square-cover.id-track-partial-impression.id-deep-link-item");
         if(!elements.isEmpty()){
-            System.out.println(elements.size());
             Element element = elements.first();
-            String img_link = element.select(".cover-image").attr("src");
-            System.out.println(img_link);
-            resultList.add(new Pair("img_link", img_link));
-            String ratingCount = element.select(".rating-count").text();
-            System.out.println(ratingCount);
-            resultList.add(new Pair("ratingCount", ratingCount));
-            String author = element.select(".document-subtitle.primary").text();
-            System.out.println(author);
-            resultList.add(new Pair("author", author));
-            String genre = element.select(".document-subtitle.category").text();
-            System.out.println(genre);
-            resultList.add(new Pair("genre", genre));
-            String compatibility = element.select(".app-compatibility-final").text();
-            System.out.println(compatibility);
-            resultList.add(new Pair("compatibility", compatibility));
+            String title = elements.select(".id-app-title").text();
+            if(title == null || title.isEmpty()) {
+            		app.setTitle("Unknown");
+            }else {
+            	 	app.setTitle(title);
+            }
+
+            String ratingCount = element.select(".rating-count").text().trim();
+            if(ratingCount == null || ratingCount.isEmpty()) {
+            		app.setReviews("Unknown");
+            }else {
+            		app.setReviews(ratingCount);
+            }
+
+            String subtitle = element.select(".document-subtitle.primary").text();
+            if(subtitle == null || subtitle.isEmpty()) {
+        		app.setSubtitle("Unknown");
+	        }else {
+	        		app.setSubtitle(subtitle);
+	        }
+
+            //generate genres
+            ArrayList<String> genre = new ArrayList<String>();
+            Elements genres = element.select(".document-subtitle.category");
+            if(genres == null || genres.isEmpty()){
+            		genre.add("Unknown");
+            		app.setGenre(genre);
+            }else {
+	            for(int i=0; i<genres.size(); i++) {
+	            		genre.add(genres.get(i).text());
+	            }
+	            app.setGenre(genre);
+            }
+                        
+            String price = element.select(".price.buy.id-track-click.id-track-impression").text();
+            
+            if(price == null || price.isEmpty() || price.equals("Install")) {
+            		app.setFree(true);
+            }else {
+            		app.setPrice(price.split(" ")[0]);
+            }
+
             String description = element.select(".show-more-content.text-body").text();
-            System.out.println(description);
-            resultList.add(new Pair("description", description));
+            if(description == null || description.isEmpty()) {
+            		app.setDescription("None");
+            }else {
+            		app.setDescription(description);
+            }
             
             //change div to reviews div
             element = document.select("div.details-section.reviews").first();
-            String score = element.select(".score").text();
-            System.out.println(score);
-            resultList.add(new Pair("score", score));
-            String ratingHistogram = 
-                    element.select(".rating-bar-container.five").text() + "\n" +
-                    element.select(".rating-bar-container.four").text() + "\n" +
-                    element.select(".rating-bar-container.three").text() + "\n" +
-                    element.select(".rating-bar-container.two").text() + "\n" +
-                    element.select(".rating-bar-container.one").text();
-            System.out.println(ratingHistogram);
-            resultList.add(new Pair("ratingHistogram", ratingHistogram));
+            if(element == null || element.select(".score") == null) {
+            		app.setScore("None");
+            		app.setScore1("None");
+            		app.setScore2("None");
+            		app.setScore3("None");
+            		app.setScore4("None");
+            		app.setScore5("None");
+            }else {
+	            String score = element.select(".score").text();
+	            
+	            app.setScore(score);
+	            //resultList.add(new Pair("score", score));
+	            app.setScore5(element.select(".rating-bar-container.five").text().replaceFirst("5 ", ""));
+	            app.setScore4(element.select(".rating-bar-container.four").text().replaceFirst("4 ", ""));
+	            app.setScore3(element.select(".rating-bar-container.three").text().replaceFirst("3 ", ""));
+	            app.setScore2(element.select(".rating-bar-container.two").text().replaceFirst("2 ", ""));
+	            app.setScore1(element.select(".rating-bar-container.one").text().replaceFirst("1 ", ""));
+            }
             
             //get recent changes
             //change div to reviews div
@@ -141,22 +178,23 @@ class JsoupClass {
                         recent_changes += "\n"+recent_change.text();
                     }
                 }
-                System.out.println(recent_changes);
-                resultList.add(new Pair("recent_changes", recent_changes));
+                app.setWhatsnew(recent_changes);
+                //resultList.add(new Pair("recent_changes", recent_changes));
             }else{
                 recent_changes = "None";
-                resultList.add(new Pair("recent_changes", recent_changes));
+                app.setWhatsnew(recent_changes);
+                //resultList.add(new Pair("recent_changes", recent_changes));
             }
             //fetch additional info
             //change div to reviews div
             element = document.select("div.details-section.metadata").first();
-            String updated = "";
-            String size = "";
-            String installs = "";
-            String current_version = "";
-            String requires_android = "";
-            String in_app_products = "";
-            String interactive_elements = "";
+            String updated = null;
+            String size = null;
+            String installs = null;
+            String current_version = null;
+            String requires_android = null;
+            String in_app_products = null;
+            String interactive_elements = null;
             for(Element meta_info: element.select(".meta-info")){
                 String key = meta_info.select(".title").text().trim();
                 if(key.equals("Updated")){
@@ -175,48 +213,62 @@ class JsoupClass {
                     interactive_elements = meta_info.select(".content").text().trim();
                 }
             }
-            System.out.println(updated);
-            resultList.add(new Pair("updated", updated));
-            System.out.println(size);
-            resultList.add(new Pair("size", size));
-            System.out.println(installs);
-            resultList.add(new Pair("installs", installs));
-            System.out.println(current_version);
-            resultList.add(new Pair("current_version", current_version));
-            System.out.println(requires_android);
-            resultList.add(new Pair("requires_android", requires_android));
-            System.out.println(in_app_products);
-            resultList.add(new Pair("in_app_products", in_app_products));
-            System.out.println(interactive_elements);
-            resultList.add(new Pair("interactive_elements", interactive_elements));
+            app.setLastUpdate(updated);
+            app.setSize(size);
+            app.setInstalls(installs);
+            app.setCurrentVersion(current_version);
+            app.setAndroidReq(requires_android);
+            app.setInAppPurchases(in_app_products);
+            app.setInteractiveElements(interactive_elements);
             
             //get content rating info
-            String content_rating = "";
+            ArrayList<String> content_rating = new ArrayList<>();
             for(Element meta_info_other: element.select(".meta-info.contains-text-link")){
                 String key = meta_info_other.select(".title").text().trim();
                  if(key.equals("Content Rating")){
-                    content_rating = meta_info_other.select(".content").text().trim();
-                    content_rating = content_rating.replaceAll("Learn more", "");
+                    Elements content_rating_elements = meta_info_other.select(".content");
+                    for(Element rating: content_rating_elements) {
+                    		if(!rating.text().trim().equals("Learn more")) {
+                    			content_rating.add(rating.text().trim());
+                    		}
+                    }
+                  
                  }
             }
-            System.out.println(content_rating);
-            resultList.add(new Pair("content_rating", content_rating));
+            app.setContentRating(content_rating);
+            //resultList.add(new Pair("content_rating", content_rating));
             
             //get developer info
             String developer = "";
+            String developerWeb = "";
+            String developerEmail = "";
+            String developerAddress = "";
             for(Element meta_info_developer: element.select(".meta-info.meta-info-wide")){
                 String key = meta_info_developer.select(".title").text().trim();
                  if(key.equals("Developer")){
-                    developer = meta_info_developer.select(".content").text().trim();
-                    developer = developer.replaceAll("Visit website", "");
-                    developer = developer.replaceAll("Email ", "");
-                    developer = developer.replaceAll("Privacy Policy", "");
+                	 	
+                	 	for(Element devLink: meta_info_developer.select(".dev-link")) {
+                	 		if(devLink.text().contains("website")) {
+                	 			developerWeb = devLink.attr("href");
+                	 			
+                	 		}else if(devLink.text().contains("Email")) {
+                	 			developerEmail = devLink.text().replaceAll("Email", "").replaceAll(" ", "").trim();
+                	 		}
+                	 	}
+                	 	
+                	 	Element addressElement = meta_info_developer.select(".content.physical-address").first();
+                	 	if(addressElement != null && !addressElement.text().isEmpty()) {
+                	 		developerAddress = addressElement.text().trim();
+                	 	}
+                	 	
                  }
             }
-            System.out.println(developer);
-            resultList.add(new Pair("developer", developer.trim()));
+            app.setDeveloperWebsite(developerWeb);
+            app.setDeveloperEmail(developerEmail);
+            app.setDeveloperAddress(developerAddress);
+            //resultList.add(new Pair("developer", developer.trim()));
         }
         //System.out.println(document.outerHtml());
-        return resultList;
+        return app;
     }
 }

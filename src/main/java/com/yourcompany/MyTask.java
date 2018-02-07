@@ -1,26 +1,35 @@
 package com.yourcompany;
 
-import javafx.application.Platform;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 
-public class MyTask extends Task {
-
+public class MyTask extends Task<App> {
+	private App app;
+	
+	public App getApp() {
+		return this.app;
+	}
+	
 	@Override
-	protected Object call() throws Exception {
+	protected App call() throws Exception {
 		if (isCancelled()) {
 			this.cancel();
 		}
+		System.out.println("IN MY TASK");
+		String appLink = AppLinks.getLink();
+		
+		if(appLink == null) {
+			this.cancel();
+			System.out.println("APPLINK NULL");
+			return null;
+		}else {
+			try {
+				this.app = JsoupClass.getSingleAppInfo(appLink);
+				return app;
+			}catch(Exception e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
 
-		Thread.sleep(2000);
-		App app = new App();
-		app.setTitle("Test");
-		app.setSubtitle("Test");
-		app.setPrice("20");
-		app.setScore(4.5);
-		app.setInstalls("1000-2000");
-		return true;
 	}
 }

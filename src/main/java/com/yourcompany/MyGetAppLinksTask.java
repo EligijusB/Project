@@ -18,9 +18,16 @@ public class MyGetAppLinksTask extends Task<ArrayList<String>> {
 	ArrayList<String> links;
 	WebDriver driver;
 	String searchKey;
+	String searchHref;
+	boolean singleSearch = false;
+	String priceFilter;
 	
 	public ArrayList<String> getLinks() {
 		return links;
+	}
+	
+	public void setPriceFilter(String priceFilter) {
+		this.priceFilter = priceFilter;
 	}
 
 	public void setDriver(WebDriver driver) {
@@ -31,6 +38,14 @@ public class MyGetAppLinksTask extends Task<ArrayList<String>> {
 		this.searchKey = searchKey;
 	}
 	
+	public void setSearchHref(String searchHref) {
+		this.searchHref = searchHref;
+	}
+	
+	public void setSingleSerach() {
+		singleSearch = true;
+	}
+	
 	public MyGetAppLinksTask() {
 		links = new ArrayList<String>();
 	}
@@ -39,10 +54,20 @@ public class MyGetAppLinksTask extends Task<ArrayList<String>> {
 	protected ArrayList<String> call() throws Exception {
 		if (isCancelled()) {
 			//pass
+			System.out.println("Something went wrong cancelled");
 			return null;
 		} else {
 			// gather links
-			String pageSource = Statics.search(driver, searchKey);
+			String pageSource;
+			if(searchHref != null) {
+				//search by genre using href
+				System.out.println("Called search by genre");
+				pageSource = Statics.searchByGenre(driver, searchHref);
+			}else {
+				//search by keyword
+				System.out.println("Called search by keyword");
+				pageSource = Statics.searchByKeyword(driver, searchKey, priceFilter);
+			}
 			System.out.println("Called statics method...");
 			try {
 				final Document document = Jsoup.parse(pageSource);
@@ -52,16 +77,37 @@ public class MyGetAppLinksTask extends Task<ArrayList<String>> {
 					if(isCancelled() || Thread.currentThread().isInterrupted()) {
 						break;
 					}
-					String appLink = appDiv.select(".card-click-target").attr("href").trim();
-					if(!appLink.isEmpty()) {
-						System.out.println(appLink);
-						this.links.add(appLink);
+					if(singleSearch) {
+						//test the title of the app
+						System.out.println("SINGLE SEARCH");
+						String title = appDiv.select("a.title").text().trim();
+						if(title.toUpperCase().contains(searchKey.toUpperCase())) {
+							System.out.println("title");
+							String appLink = appDiv.select(".card-click-target").attr("href").trim();
+							if(!appLink.isEmpty()) {
+								System.out.println(appLink);
+								this.links.add(appLink);
+							}else {
+								System.out.println("Found empty link");
+							}
+						}else {
+							//just pass without checking the app link and storing it into the arraylist
+						}
 					}else {
-						System.out.println("Found empty link");
+						String appLink = appDiv.select(".card-click-target").attr("href").trim();
+						if(!appLink.isEmpty()) {
+							System.out.println(appLink);
+							this.links.add(appLink);
+						}else {
+							System.out.println("Found empty link");
+						}
 					}
 				}
+				driver.navigate().back();
+				driver.navigate().refresh();
 				return this.links;
 			}catch(Exception e) {
+				System.out.println("Something went wrong exception");
 				return null;
 			}
 		}

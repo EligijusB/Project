@@ -1,20 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yourcompany.SecondWindowController">
+<AnchorPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="0.0" prefWidth="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="notifierLabel" alignment="TOP_LEFT" />
-            <JFXTreeTableView fx:id="tableView">
+            <MenuBar fx:id="menuBar">
+              <menus>
+                <Menu fx:id="shortcutsMenuItem" mnemonicParsing="false" text="Shortcuts">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu fx:id="filterMenuItem" mnemonicParsing="false" text="Filter">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu fx:id="sortMenuItem" mnemonicParsing="false" text="Sort">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+               <children>
+                  <Label text="Axis - x:" />
+                  <JFXComboBox fx:id="paramOneCombo" focusColor="#58d68d" promptText="Select" />
+                  <Label text="Axis - y:" />
+                  <JFXComboBox fx:id="paramTwoCombo" focusColor="#58d68d" promptText="Select" />
+                  <JFXButton fx:id="generateButton" buttonType="RAISED" onAction="#onGenerateGraph" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="Generate 2D Graph" />
+                  <JFXButton fx:id="generateD" buttonType="RAISED" onAction="#onGenerateGraph3D" ripplerFill="#58d68d" style="-fx-background-color: #58D68D;" text="3D Graph" />
+               </children>
+            </HBox>
+            <TableView fx:id="tableView">
                <columnResizePolicy>
-                  <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
-            </JFXTreeTableView>
+               <columns>
+                  <TableColumn id="0" fx:id="checkBoxColumn" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" resizable="false" sortable="false" />
+               </columns>
+            </TableView>
+            <Label fx:id="notifierLabel" alignment="TOP_LEFT" />
          </children>
       </VBox>
    </children>

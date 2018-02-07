@@ -8,11 +8,14 @@ public class AppLinks {
 	
 	public static synchronized String getLink() {
 		if(listOfLinks != null &&!listOfLinks.isEmpty()) {
+			System.out.println("RETURNING LINK");
 			String link = listOfLinks.get(0);
 			listOfLinks.remove(0);
 			return link;
+		}else {
+			System.out.println("NO MORE LINKS");
+			return null;
 		}
-		return null;
 	}
 	
 	public static void setLinksList(ArrayList<String> list) {

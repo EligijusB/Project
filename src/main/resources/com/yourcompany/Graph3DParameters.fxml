@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="CENTER" layoutX="224.0" layoutY="78.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label layoutX="277.0" layoutY="78.0" text="Axis - x" />
+                  <JFXComboBox fx:id="paramX" focusColor="#58d68d" layoutX="224.0" layoutY="95.0" promptText="Select Parameter" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label layoutX="277.0" layoutY="148.0" text="Axis - y">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Label>
+                  <JFXComboBox fx:id="paramY" focusColor="#58d68d" layoutX="232.0" layoutY="165.0" promptText="Select Parameter" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label layoutX="277.0" layoutY="222.0" text="Axis - z" />
+                  <JFXComboBox fx:id="paramZ" focusColor="#58d68d" layoutX="232.0" layoutY="239.0" promptText="Select Parameter" />
+               </children>
+            </VBox>
+            <JFXButton buttonType="RAISED" onAction="#onGenerateButtonPress" prefHeight="32.0" style="-fx-background-color: #58D68D;" text="Generate 3D Graph">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </JFXButton>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
